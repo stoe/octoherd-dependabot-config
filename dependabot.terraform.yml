@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    commit-message:
+      prefix: '🆙 action'
+    labels:
+      - 'github-action :robot:'
+
+  - package-ecosystem: 'terraform'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+    commit-message:
+      prefix: '🆙 tf'
+      include: 'scope'
+    labels:
+      - 'dependency :robot:'

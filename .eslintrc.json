@@ -1,0 +1,14 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true
+  },
+  "plugins": ["github"],
+  "extends": ["plugin:github/recommended"],
+  "rules": {
+    "camelcase": ["error", {"allow": ["html_url"]}]
+  }
+}

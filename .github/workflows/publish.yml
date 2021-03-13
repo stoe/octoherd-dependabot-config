@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - main
+
+name: publish
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: set up
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: get cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+        id: npm-cache
+
+      - name: use cache
+        uses: actions/cache@v2.1.4
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: npm-
+
+      - name: dependencies
+        run: npm install --ignore-scripts --pure-lockfile
+
+      - name: publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
