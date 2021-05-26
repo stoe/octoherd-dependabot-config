@@ -1,7 +1,7 @@
 {
-  "name": "@stoe/octoherd-script-dependabot-config",
+  "name": "@stoe/octoherd-dependabot-config",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "keywords": [
     "octohed-script"
@@ -11,7 +11,7 @@
     "email": "stefan@stoelzle.me",
     "url": "https://github.com/stoe"
   },
-  "repository": "github:stoe/octoherd-script-dependabot-config",
+  "repository": "https://github.com/stoe/octoherd-dependabot-config",
   "license": "MIT",
   "engines": {
     "node": ">=14",
@@ -19,7 +19,7 @@
   },
   "exports": "./script.js",
   "bin": {
-    "octoherd-script-dependabot-config": "./cli.js"
+    "octoherd-dependabot-config": "./cli.js"
   },
   "scripts": {
     "pretest": "npx eslint-config-prettier .eslintrc.json",

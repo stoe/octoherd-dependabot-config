@@ -1,9 +1,8 @@
 import {readFileSync} from 'fs'
 import {resolve} from 'path'
+import {composeCreatePullRequest} from 'octokit-plugin-create-pull-request'
 
 const pkg = JSON.parse(readFileSync('./package.json'))
-
-import {composeCreatePullRequest} from 'octokit-plugin-create-pull-request'
 
 /**
  * @param {import('@octoherd/cli').Octokit} octokit
@@ -20,10 +19,10 @@ export async function script(octokit, repository) {
     return
   }
 
-  // if (repository.size === 0) {
-  //   octokit.log.info({change: false}, `repository is empty`)
-  //   return
-  // }
+  if (repository.size === 0) {
+    octokit.log.info({change: false}, `repository is empty`)
+    return
+  }
 
   const {
     owner: {login: owner},
@@ -96,7 +95,7 @@ export async function script(octokit, repository) {
       ],
       createWhenEmpty: false
     })
-    octokit.log.info(`pull request created ${pr.html_url}`)
+    octokit.log.info({change: true}, `pull request created ${pr.html_url}`)
   } catch (error) {
     octokit.log.error(`${error.message}`)
   }
