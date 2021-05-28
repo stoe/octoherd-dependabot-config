@@ -32,7 +32,7 @@ jobs:
         id: npm-cache
 
       - name: Use cache
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: npm-${{ hashFiles('**/package-lock.json') }}
