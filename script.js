@@ -7,8 +7,9 @@ const pkg = JSON.parse(readFileSync('./package.json'))
 /**
  * @param {import('@octoherd/cli').Octokit} octokit
  * @param {import('@octoherd/cli').Repository} repository
+ * @param { {dryRun: boolean} } options Custom user options passed to the CLI
  */
-export async function script(octokit, repository) {
+export async function script(octokit, repository, {dryRun = false}) {
   if (repository.archived) {
     octokit.log.info({change: false}, `repository archived`)
     return
@@ -20,7 +21,7 @@ export async function script(octokit, repository) {
   }
 
   if (repository.size === 0) {
-    octokit.log.info({change: false}, `repository is empty`)
+    octokit.log.info({change: false, size: repository.size}, `repository is empty`)
     return
   }
 
@@ -64,13 +65,18 @@ export async function script(octokit, repository) {
     const buf = Buffer.from(content, 'base64')
 
     if (buf.toString('utf-8') === newContent.toString('utf-8')) {
-      octokit.log.info(`${html_url} no change`)
+      octokit.log.info({change: false}, `${html_url} no change`)
       return
     }
 
     payload.message = 'Update dependabot config'
   } catch (error) {
     // do nothing
+  }
+
+  if (dryRun) {
+    octokit.log.info({change: false, payload}, `[dry run] would update ${html_url}`)
+    return
   }
 
   try {
