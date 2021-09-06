@@ -26,14 +26,14 @@
     "test": "eslint ."
   },
   "dependencies": {
-    "@octoherd/cli": "^3.3.3",
+    "@octoherd/cli": "^3.4.2",
     "octokit-plugin-create-pull-request": "^3.9.3"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
-    "eslint": "^7.28.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-github": "^4.1.3"
+    "eslint-plugin-github": "^4.2.0"
   },
   "prettier": "@github/prettier-config"
 }
