@@ -3,8 +3,7 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'weekly'
-      day: 'saturday'
+      interval: 'monthly'
     commit-message:
       prefix: '🆙 action'
     labels:
@@ -13,8 +12,7 @@ updates:
   - package-ecosystem: 'terraform'
     directory: '/'
     schedule:
-      interval: 'weekly'
-      day: 'saturday'
+      interval: 'monthly'
     commit-message:
       prefix: '🆙 tf'
       include: 'scope'
