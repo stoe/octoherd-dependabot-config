@@ -1,6 +1,6 @@
+import {composeCreatePullRequest} from 'octokit-plugin-create-pull-request'
 import {readFileSync} from 'fs'
 import {resolve} from 'path'
-import {composeCreatePullRequest} from 'octokit-plugin-create-pull-request'
 
 const pkg = JSON.parse(readFileSync('./package.json'))
 
@@ -69,6 +69,7 @@ export async function script(octokit, repository, {dryRun = false}) {
       return
     }
 
+    // eslint-disable-next-line i18n-text/no-en
     payload.message = 'Update dependabot config'
   } catch (error) {
     // do nothing
@@ -106,3 +107,5 @@ export async function script(octokit, repository, {dryRun = false}) {
     octokit.log.error(`${error.message}`)
   }
 }
+
+export default script
