@@ -26,7 +26,7 @@
     "test": "eslint ."
   },
   "dependencies": {
-    "@octoherd/cli": "^3.4.2",
+    "@octoherd/cli": "^4.0.2",
     "octokit-plugin-create-pull-request": "^3.9.3"
   },
   "devDependencies": {
